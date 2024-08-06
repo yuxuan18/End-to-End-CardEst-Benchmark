@@ -44,3 +44,4 @@ lib*.pc
 /tmp_install/
 .DS_Store
 results
+postgres_db
