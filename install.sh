@@ -17,8 +17,8 @@ rm -rf ~/miniconda3/miniconda.sh
 . ~/.bashrc
 
 # setup conda env
-conda create -y -n pilotdb
-conda activate pilotdb
+conda create -y -n join
+conda activate join
 conda install -y -c conda-forge postgresql
 conda install -y python=3.11
 
