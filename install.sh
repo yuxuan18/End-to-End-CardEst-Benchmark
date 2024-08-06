@@ -1,11 +1,11 @@
 # setup options
 if [ -z "$DB_PATH" ]; then
-    DB_PATH="."
+    DB_PATH=.
 fi
 IMDB_DATASETS_DIRECTORY=$DB_PATH/imdb_data
 
 if [-z "$BENCHMARK"]; then
-    BENCHMARK="JOB"
+    BENCHMARK=BOTH
 fi
 
 # install anaconda
