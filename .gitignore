@@ -45,3 +45,5 @@ lib*.pc
 .DS_Store
 results
 postgres_db
+results_*
+postgresql-13.1
