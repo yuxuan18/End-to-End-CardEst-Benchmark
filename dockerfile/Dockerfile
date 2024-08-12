@@ -48,7 +48,7 @@ RUN set -eux \
 	&& useradd -r -g postgres --uid=999 --home-dir=/var/lib/pgsql/13.1/data --shell=/bin/bash postgres \
 	&& mkdir -p /var/lib/pgsql/13.1/data \
 	&& chown -R postgres:postgres /var/lib/pgsql/13.1/data \
-  && echo 'postgres' > /var/lib/pgsql/13.1/passwd \
+  && echo 'yxx404!' > /var/lib/pgsql/13.1/passwd \
   && chmod -R 777 /var/lib/pgsql/13.1/passwd
 
 COPY ./init_pgsql.sh /var/lib/pgsql/13.1/init_pgsql.sh

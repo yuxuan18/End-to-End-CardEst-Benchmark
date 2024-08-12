@@ -8,16 +8,16 @@ def extract_time(time_str):
     return float(time_str[start_pos:end_pos])
 
 with open("workloads/stats_CEB/stats_CEB.sql") as f:
-    qid = 1
-    for line in f:
+    queries = f.readlines()
+    for qid, query in enumerate(queries):
+        if qid < 58:
+            continue
         results = []
-        for i in range(6):
-            query = "EXPLAIN ANALYZE " + line.split("||")[1]
-            command = "psql -d postgres -c \"" + query + "\""
+        for i in range(1):
+            query = "EXPLAIN ANALYZE " + query.split("||")[1]
+            command = "psql -d stats -c \"" + query + "\""
             # execute the command and fetch the output
             output = subprocess.check_output(command, shell=True)
-            if i == 0:
-                continue
             # convert to string
             output = output.decode("utf-8")
             output = output.strip().split("\n")
@@ -32,7 +32,6 @@ with open("workloads/stats_CEB/stats_CEB.sql") as f:
                 "plan": plan,
             })
         # write the results to a file
-        with open(f"results/{qid}.jsonl", "a+") as f:
+        with open(f"results_postgres/{qid}.jsonl", "a+") as f:
             for result in results:
                 f.write(json.dumps(result) + "\n")
-        qid += 1

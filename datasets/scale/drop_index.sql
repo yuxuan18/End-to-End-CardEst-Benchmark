@@ -1,0 +1,12 @@
+drop index idx_posts_owneruserid;
+drop index  idx_posts_lasteditoruserid;
+drop index idx_postlinks_relatedpostid;
+drop index idx_postlinks_postid;
+drop index idx_posthistory_postid;
+drop index idx_posthistory_userid;
+drop index idx_comments_postid;
+drop index idx_comments_userid;
+drop index idx_votes_userid;
+drop index idx_votes_postid;
+drop index idx_badges_userid;
+drop index idx_tags_excerptpostid;

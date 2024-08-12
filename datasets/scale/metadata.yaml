@@ -1,0 +1,58 @@
+badges:
+    Id: pkey
+    UserId: fkey-users
+    Date: data
+
+comments:
+    Id: pkey
+    PostId: fkey-posts
+    Score: data
+    CreationDate: data
+    UserId: fkey-users
+
+postHistory:
+    Id: pkey
+    PostHistoryTypeId: data
+    PostId: fkey-posts
+    CreationDate: data
+    UserId: fkey-users
+
+postLinks:
+    Id: pkey
+    CreationDate: data
+    PostId: fkey-posts
+    RelatedPostId: fkey-posts
+    LinkTypeId: data
+
+posts:
+    Id: pkey
+    PostTypeId: data
+    CreationDate: data
+    Score: data
+    ViewCount: data
+    OwnerUserId: fkey-users
+    AnswerCount: data
+    CommentCount: data
+    FavoriteCount: data
+    LastEditorUserId: fkey-users
+
+tags:
+    Id: pkey
+    Count: data
+    ExcerptPostId: fkey-posts
+
+users:
+    Id: pkey
+    Reputation: data
+    CreationDate: data
+    Views: data
+    UpVotes: data
+    DownVotes: data
+
+votes:
+    Id: pkey
+    PostId: fkey-posts
+    VoteTypeId: data
+    CreationDate: data
+    UserId: data
+    BountyAmount: data

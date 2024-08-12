@@ -51,7 +51,7 @@ postgres -D $PSQL_DATA_DIRECTORY
 You can import the STATS dataset into Postgres through psql. Note you must make sure the path in `stats_load` is a correct one.
 
 ```bash
-template1=# create database stats
+template1=# create database stats;
 template1=# \c stats
 stats=# \i datasets/stats_simplified/stats.sql
 stats=# \i scripts/sql/stats_load.sql
