@@ -383,7 +383,9 @@ diff -ruN postgresql-13.1_11/src/backend/optimizer/path/costsize.c postgresql-13
 +        }
 +
 +        join_est_no++;
-+        return clamp_row_est(join_est);
++        if (join_est > 0) {
++            return clamp_row_est(join_est);
++        }
 +    }
 +
  	return clamp_row_est(nrows);
