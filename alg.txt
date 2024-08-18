@@ -49,3 +49,70 @@ b   t   p   u
 b   t   p   v
 b   p   u   v
 b   t   p   u   v
+
+-- q57
+SELECT COUNT(*) 
+FROM posts as p, postLinks as pl, postHistory as ph, votes as v, badges as b, users as u 
+
+WHERE p.Id = pl.RelatedPostId 
+  AND u.Id = p.OwnerUserId 
+  AND u.Id = b.UserId 
+  AND u.Id = ph.UserId 
+  AND u.Id = v.UserId 
+
+AND p.CommentCount>=0 AND p.CommentCount<=13 
+AND ph.PostHistoryTypeId=5 AND ph.CreationDate<='2014-08-13 09:20:10'::timestamp
+AND v.CreationDate>='2010-07-19 00:00:00'::timestamp 
+AND b.Date<='2014-09-09 10:24:35'::timestamp 
+AND u.Views>=0 AND u.DownVotes>=0 AND u.CreationDate>='2010-08-04 16:59:53'::timestamp AND u.CreationDate<='2014-07-22 15:15:22'::timestamp;
+
+
+v* --- u --- *p --- *pl
+      / \
+     /   \
+    b*   ph*
+
+
+--- q57 subqueries
+pl_pf
+phf_pf_u
+vf_pf_u
+bf_pf_u
+uf_pf
+vf_phf_u
+bf_phf_u
+uf_phf
+bf_vf_u
+uf_vf
+uf_bf
+phf_pf_pl_u
+vf_pf_pl_u
+bf_pf_pl_u
+uf_pf_pl
+vf_pf_phf_u
+bf_pf_phf_u
+uf_pf_phf
+bf_pf_v_u
+uf_pf_vf
+uf_pf_bf
+bf_phf_vf_u
+uf_phf_vf
+uf_phf_bf
+uf_vf_bf
+vf_pf_pl_phf_u
+bf_pf_pl_phf_u
+uf_pf_pl_phf
+bf_pf_pl_vf_u
+uf_pf_pl_vf
+uf_pf_pl_bf
+bf_pf_phf_vf_u
+uf_pf_phf_vf
+uf_pf_phf_bf
+uf_pf_vf_bf
+uf_phf_vf_bf
+bf_pf_pl_phf_vf_u
+uf_pf_pl_phf_vf
+uf_pf_pl_phf_bf
+uf_pf_pl_vf_bf
+uf_pf_phf_vf_bf
+uf_pf_pl_phf_vf_bf

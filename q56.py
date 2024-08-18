@@ -156,7 +156,7 @@ def explain(lbs, ubs, ests):
     reward = []
     for i in range(len(lbs)):
         new_ests_lb = ests[:i] + [lbs[i]] + ests[i+1:]
-        with open("stats_db/tmp_56.txt", "w") as f:
+        with open("/mydata/stats_db/tmp_56.txt", "w") as f:
             for est in new_ests_lb:
                 f.write(str(est) + "\n")
 
@@ -167,7 +167,7 @@ def explain(lbs, ubs, ests):
                 lb_plan = cur.fetchall()
 
         new_ests_ub = ests[:i] + [ubs[i]] + ests[i+1:]
-        with open("stats_db/tmp_56.txt", "w") as f:
+        with open("/mydata/stats_db/tmp_56.txt", "w") as f:
             for est in new_ests_lb:
                 f.write(str(est) + "\n")
 
@@ -176,7 +176,6 @@ def explain(lbs, ubs, ests):
                 setup = "SET ml_joinest_enabled=true; SET query_no=0; SET join_est_no=0; SET ml_joinest_fname='tmp_56.txt';"
                 cur.execute(f"{setup} EXPLAIN {query}")
                 ub_plan = cur.fetchall()
-
         is_same = compare_plans(postprocess_plan(lb_plan), postprocess_plan(ub_plan))
         reward.append(is_same)
     return reward
@@ -196,9 +195,13 @@ def compare_plans(lb_plan, ub_plan):
             return False
     return True
 
+import time
 
-sample_size = 50
+sample_size = 80
 u, p, t, b, v, u_sample, p_sample, sample_rate_u, sample_rate_p = prepare_date(sample_size)
+start = time.time()
 lbs, ubs, ests = estimate(u_sample, p_sample, p, t, b, v, sample_rate_u, sample_rate_p)
+print("Time:", time.time() - start)
+print(lbs, ubs, ests)
 reward = explain(lbs, ubs, ests)
 print(reward)
